@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="安装node.js选择长期支持版本的最新版本下载即可，下载网址： https:&#x2F;&#x2F;nodejs.org&#x2F;en&#x2F;           下载安装Git for Windows选择最新的版本下载即可，Github下载地址： https:&#x2F;&#x2F;github.com&#x2F;git-for-windows&#x2F;git&#x2F;releases&#x2F;          或者是从Git for Windows 官网下载： http">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于Github的博客设置">
+<meta property="og:url" content="http://example.com/2022/09/26/%E6%90%AD%E5%BB%BA%E5%9F%BA%E4%BA%8Egithub%E7%9A%84%E5%8D%9A%E5%AE%A2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="安装node.js选择长期支持版本的最新版本下载即可，下载网址： https:&#x2F;&#x2F;nodejs.org&#x2F;en&#x2F;           下载安装Git for Windows选择最新的版本下载即可，Github下载地址： https:&#x2F;&#x2F;github.com&#x2F;git-for-windows&#x2F;git&#x2F;releases&#x2F;          或者是从Git for Windows 官网下载： http">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/picture/blog/001-node%E5%AE%98%E7%BD%91%E4%B8%8B%E8%BD%BD.png">
+<meta property="og:image" content="http://example.com/picture/blog/002-Git%E4%BB%8Egithub%E4%B8%8B%E8%BD%BD.png">
+<meta property="og:image" content="http://example.com/picture/blog/003-Git%E4%BB%8E%E5%AE%98%E7%BD%91%E4%B8%8B%E8%BD%BD.png">
+<meta property="og:image" content="http://example.com/picture/blog/008-hexo%E6%8F%92%E4%BB%B6%E7%89%88%E6%9C%AC%E6%98%BE%E7%A4%BA.png">
+<meta property="og:image" content="http://example.com/picture/blog/006-vscode%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6.png">
+<meta property="og:image" content="http://example.com/picture/blog/006-vscode%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B61.png">
+<meta property="og:image" content="http://example.com/picture/blog/006-vscode%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B62.png">
+<meta property="og:image" content="http://example.com/picture/blog/007-vscode%E9%A2%84%E8%A7%88%E5%8A%9F%E8%83%BD.png">
+<meta property="og:image" content="http://example.com/picture/blog/009-cmd%E5%88%87%E6%8D%A2%E7%9B%98%E7%AC%A6.png">
+<meta property="og:image" content="http://example.com/picture/blog/009-hexo%E6%96%87%E4%BB%B6%E5%A4%B9%E7%BB%93%E6%9E%84.png">
+<meta property="og:image" content="http://example.com/picture/blog/010-next%E4%B8%8B%E8%BD%BD%E7%95%8C%E9%9D%A2.png">
+<meta property="og:image" content="http://example.com/picture/blog/011-%E8%A7%A3%E5%8E%8Bnext%E6%96%87%E4%BB%B6%E5%A4%B9.png">
+<meta property="og:image" content="http://example.com/picture/blog/014-%E6%9B%B4%E6%94%B9theme%E4%B8%BB%E9%A2%98%E4%B8%BAnext.png">
+<meta property="og:image" content="http://example.com/picture/blog/012-%E7%BC%96%E8%AF%91next%E6%96%87%E4%BB%B6%E5%A4%B9.png">
+<meta property="og:image" content="http://example.com/picture/blog/013-%E7%BC%96%E8%AF%91next%E6%96%87%E4%BB%B6%E5%A4%B9git.png">
+<meta property="og:image" content="http://example.com/picture/blog/013-%E7%BC%96%E8%AF%91next%E6%96%87%E4%BB%B6%E5%A4%B9serve.png">
+<meta property="og:image" content="http://example.com/picture/blog/015-vscode_next%E7%BC%96%E8%BE%91%E7%9A%84%E6%96%87%E4%BB%B6%E5%A4%B9%E4%BD%8D%E7%BD%AE.png">
+<meta property="og:image" content="http://example.com/picture/blog/016-vscode%E6%89%93%E5%BC%80%E7%9A%84%E6%96%87%E4%BB%B6%E5%A4%B9%E9%A1%B9%E7%9B%AE.png">
+<meta property="og:image" content="http://example.com/picture/blog/017-%E6%96%B0%E5%BB%BAGithub%E4%BB%93%E5%BA%93.png">
+<meta property="og:image" content="http://example.com/picture/blog/018-%E6%96%B0%E5%BB%BAGithub%E4%BB%93%E5%BA%93%E9%85%8D%E7%BD%AE.png">
+<meta property="og:image" content="http://example.com/picture/blog/019-%E6%96%B0%E5%BB%BAGithub%E4%BB%93%E5%BA%93%E5%9C%B0%E5%9D%80%E9%85%8D%E7%BD%AE.png">
+<meta property="og:image" content="http://example.com/picture/blog/019-%E6%96%B0%E5%BB%BAGithub%E4%BB%93%E5%BA%93branch%E9%85%8D%E7%BD%AE.png">
+<meta property="og:image" content="http://example.com/picture/blog/019-%E6%96%B0%E5%BB%BAGithub%E4%BB%93%E5%BA%93page%E9%85%8D%E7%BD%AE.png">
+<meta property="og:image" content="http://example.com/picture/blog/021-%E6%96%B0%E5%BB%BAGithub%E4%BB%93%E5%BA%93ssh_key%E9%85%8D%E7%BD%AE1.png">
+<meta property="og:image" content="http://example.com/picture/blog/022-%E6%96%B0%E5%BB%BAGithub%E4%BB%93%E5%BA%93ssh_key%E9%85%8D%E7%BD%AE2.png">
+<meta property="article:published_time" content="2022-09-25T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-10-07T04:00:30.680Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/picture/blog/001-node%E5%AE%98%E7%BD%91%E4%B8%8B%E8%BD%BD.png">
+
+<link rel="canonical" href="http://example.com/2022/09/26/%E6%90%AD%E5%BB%BA%E5%9F%BA%E4%BA%8Egithub%E7%9A%84%E5%8D%9A%E5%AE%A2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>基于Github的博客设置 | Hexo</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Hexo</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/26/%E6%90%AD%E5%BB%BA%E5%9F%BA%E4%BA%8Egithub%E7%9A%84%E5%8D%9A%E5%AE%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          基于Github的博客设置
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-09-26 00:00:00" itemprop="dateCreated datePublished" datetime="2022-09-26T00:00:00+08:00">2022-09-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-10-07 12:00:30" itemprop="dateModified" datetime="2022-10-07T12:00:30+08:00">2022-10-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%8D%9A%E5%AE%A2/" itemprop="url" rel="index"><span itemprop="name">博客</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <font size=5>
+<font face="仿宋_GB2312">
+
+<h4 id="安装node-js"><a href="#安装node-js" class="headerlink" title="安装node.js"></a>安装node.js</h4><p>选择长期支持版本的最新版本下载即可，<a target="_blank" rel="noopener" href="https://nodejs.org/en/">下载网址</a>：</p>
+<pre><code>https://nodejs.org/en/
+</code></pre>
+<div align=center>
+    <img src="/picture/blog/001-node官网下载.png">
+</div>
+
+
+<h4 id="下载安装Git-for-Windows"><a href="#下载安装Git-for-Windows" class="headerlink" title="下载安装Git for Windows"></a>下载安装Git for Windows</h4><p>选择最新的版本下载即可，<a target="_blank" rel="noopener" href="https://github.com/git-for-windows/gitreleases/">Github下载地址</a>：</p>
+<pre><code>https://github.com/git-for-windows/git/releases/
+</code></pre>
+<div align=center>
+    <img src="/picture/blog/002-Git从github下载.png">
+</div>
+
+<p>或者是从<a target="_blank" rel="noopener" href="https://gitforwindows.org/">Git for Windows 官网下载</a>：</p>
+<pre><code>https://gitforwindows.org/
+</code></pre>
+<div align=center>
+    <img src="/picture/blog/003-Git从官网下载.png">
+</div>
+
+<h4 id="HEXO安装"><a href="#HEXO安装" class="headerlink" title="HEXO安装"></a>HEXO安装</h4><p>安装好node.js以及Git之后，才能执行Hexo的安装。<br>先运行windows的cmd<br>在命令行（cmd）中执行以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
+<p>执行安装命令可能会遇到下载比较慢的情况，建议开Clash梯子。</p>
+<p>安装无误，在cmd中输入</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo -v</span><br></pre></td></tr></table></figure>
+<p>会输出如下信息：</p>
+<div align=center>
+    <img src="/picture/blog/008-hexo插件版本显示.png">
+</div>
+
+<h4 id="Vscode插件安装"><a href="#Vscode插件安装" class="headerlink" title="Vscode插件安装"></a>Vscode插件安装</h4><p><a target="_blank" rel="noopener" href="https://code.visualstudio.com/">Vscode 官网</a></p>
+<pre><code>https://code.visualstudio.com/
+</code></pre>
+<p>安装3个插件就够了<br>Markdown All In One</p>
+<div align=center>
+    <img src="/picture/blog/006-vscode安装插件.png">
+</div>
+
+<p>Markdown Preview enhanced<br>构建实时预览的插件</p>
+<div align=center>
+    <img src="/picture/blog/006-vscode安装插件1.png">
+</div>
+
+
+<p>Markdown Preview Github Styling</p>
+<div align=center>
+    <img src="/picture/blog/006-vscode安装插件2.png">
+</div>
+
+<p>安装好上边的三个插件之后，需要重启Vscode才能正常使用其中的功能<br>重启之后打开md文件，然后右键选择</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[MEP:打开侧边预览]</span><br></pre></td></tr></table></figure>
+
+<div align=center>
+    <img src="/picture/blog/007-vscode预览功能.png">
+</div>
+
+<h4 id="基于Hexo的Next主题风格模板下载使用"><a href="#基于Hexo的Next主题风格模板下载使用" class="headerlink" title="基于Hexo的Next主题风格模板下载使用"></a>基于Hexo的Next主题风格模板下载使用</h4><p>基于Hexo框架的主题有很多，最受欢迎的是Next模板。<br>安装完成上述的包之后，打开windows的cmd执行：</p>
+<pre><code>npm install -g hexo-cli
+</code></pre>
+<p>然后在某一处新建一个文件夹，然后在cmd中cd进入此文件夹<br>注意在切换的时候，cmd默认进入的是C盘，切换盘符的命令比较特殊：<br>例如我想从C盘切换到我的D盘，执行以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /d d:</span><br></pre></td></tr></table></figure>
+<p>得到如下的结果：</p>
+<div align=center>
+    <img src="/picture/blog/009-cmd切换盘符.png">
+</div>
+
+<p>我的文件夹建在了: <code>D:\user\Desktop\hexo</code>中,那我完整的执行流程就是：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /d d:</span><br><span class="line"><span class="built_in">cd</span> user\Desktop\hexo</span><br><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+<p>注意在<code>hexo init</code>执行的时候要保证cmd的当前路径文件夹是空的。<br>至此基础的安装已经完成，如果之前没有错误就可以关掉cmd了。<br>得到的文件夹的结构应该是如下得样子：</p>
+<div align=center>
+    <img src="/picture/blog/009-hexo文件夹结构.png">
+</div>
+
+
+<p>然后就是去下载Next模板：<br><a target="_blank" rel="noopener" href="https://github.com/theme-next">Next模板下载地址:</a>：</p>
+<pre><code>https://github.com/theme-next
+</code></pre>
+<p>next项目中有好多分支，下载最多的是第一个，我也用的第一个。点击进去然后点code下载，得到它的压缩文件夹。</p>
+<div align=center>
+    <img src="/picture/blog/010-next下载界面.png">
+</div>
+
+<p>然后将下载的压缩包中的文件整体解压到<code>hexo\themes</code>文件夹中:</p>
+<div align=center>
+    <img src="/picture/blog/011-解压next文件夹.png">
+</div>
+
+<p>下载的next文件夹可能名字不是这个，这是我改了名字。</p>
+<p>然后将<code>\hexo\_config.yml</code>文件中的主题更改下：</p>
+<div align=center>
+    <img src="/picture/blog/014-更改theme主题为next.png">
+</div>
+
+<p>这个主题的名字应该是与theme中的文件夹的名字是一样的，没有试名字换了行不行。</p>
+<h4 id="Next的本地编译和预览"><a href="#Next的本地编译和预览" class="headerlink" title="Next的本地编译和预览"></a>Next的本地编译和预览</h4><p>编译需要在Git中完成，右键整体的文件夹，然后：</p>
+<div align=center>
+    <img src="/picture/blog/012-编译next文件夹.png">
+</div>
+
+<div align=center>
+    <img src="/picture/blog/013-编译next文件夹git.png">
+</div>
+
+<p>在Git中执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+
+<p>其中<code>hexo g</code>是generate编译生成项目的意思，<code>hexo s</code>是serve创建本地服务器的意思</p>
+<div align=center>
+    <img src="/picture/blog/013-编译next文件夹serve.png">
+</div>
+
+<p>最后生成了一个本地的服务器，并输出了访问地址：</p>
+<pre><code>http://localhost:4000
+</code></pre>
+<p>然后在浏览器中打开这个本地网址就可以看到现在的工程编译后什么样子了。</p>
+<h4 id="Vscode中配置与编辑博客"><a href="#Vscode中配置与编辑博客" class="headerlink" title="Vscode中配置与编辑博客"></a>Vscode中配置与编辑博客</h4><p>编译好上传之后，主页上显示的内容是<code>source\_posts</code>文件夹中的所有md文件的编译汇总，而且无论在哪一个子目录下，都会编译上传。所以可以在<code>source</code>文件夹中建立几个子文件夹用来存编写博客用到的图片等资源:</p>
+<div align=center>
+    <img src="/picture/blog/015-vscode_next编辑的文件夹位置.png">
+</div>
+
+<p>然后在Vscode中直接打开整个<code>source</code>文件夹作为项目：</p>
+<div align=center>
+    <img src="/picture/blog/016-vscode打开的文件夹项目.png">
+</div>
+
+<p>然后就可以打开md文件，在vscode中编辑啦！</p>
+<h4 id="Github中的部署"><a href="#Github中的部署" class="headerlink" title="Github中的部署"></a>Github中的部署</h4><p>首先是要在Github上登录自己的账户，GitHub的用户名不能包含汉字等特殊字符，要不然不可以用。</p>
+<p>首先建立一个Github仓库：</p>
+<div align=center>
+    <img src="/picture/blog/017-新建Github仓库.png">
+</div>
+
+<div align=center>
+    <img src="/picture/blog/018-新建Github仓库配置.png">
+</div>
+
+
+
+<p>同时在自己项目的<code>\hexo\_config.yml</code></p>
+<p>设置提交地址：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/one-command-deployment</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">&#x27;git&#x27;</span></span><br><span class="line">  <span class="attr">repository:</span> <span class="string">git@github.com:github用户名/github用户名.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">main或者master</span></span><br></pre></td></tr></table></figure>
+
+<p>注意<code>repository</code>的地址，一定是要设置为这种格式，将；<br>以及<code>branch</code>要和最终在GitHub中设置的分支保持一致。</p>
+<p>我设置的是：</p>
+<div align=center>
+    <img src="/picture/blog/019-新建Github仓库地址配置.png">
+</div>
+
+
+<p>然后在github中进行Github Pages配置：</p>
+<p>首先是进去新建的repository，进行branch和page设置：</p>
+<div align=center>
+    <img src="/picture/blog/019-新建Github仓库branch配置.png">
+</div>
+
+<div align=center>
+    <img src="/picture/blog/019-新建Github仓库page配置.png">
+</div>
+
+
+<p>然后在刚才打开的Git Bash中输入命令安装Git插件，<del>（也许不用安装也可以用）</del>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git -save</span><br><span class="line">git init</span><br></pre></td></tr></table></figure>
+<p>然后绑定个人信息命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;roninzhezhe&quot;</span></span><br><span class="line">git config --global user.email <span class="string">&quot;3280764487@qq.com&quot;</span></span><br><span class="line"></span><br><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;3280764487@qq.com&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>作用分别是，绑定用户名与用户邮箱，生成ssh key用来与特定的仓库建立上传链接。</p>
+<p>创建好的ssh key一般是在<code>C:\Users\dyz\.ssh\id_rsa.pub</code>文件，用记事本打开之后复制全部内容，然后打开github的设置（是在自己右上角头像的设置，不是单独仓库的设置）：</p>
+<div align=center>
+    <img src="/picture/blog/021-新建Github仓库ssh_key配置1.png">
+</div>
+
+<p>新建一个SSH key，title是key的名字，不重要，将复制的内容黏贴到Key处，然后点击Add SSH key完成：</p>
+<div align=center>
+    <img src="/picture/blog/022-新建Github仓库ssh_key配置2.png">
+</div>
+
+
+<h4 id="Git编译上传以及打开自建的博客网站"><a href="#Git编译上传以及打开自建的博客网站" class="headerlink" title="Git编译上传以及打开自建的博客网站"></a>Git编译上传以及打开自建的博客网站</h4><p>反回Git bash，输入命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+<p><code>hexo d</code>代表deploy，部署的意思，意义就是部署到Github的仓库中，上传之后会有一段时间（大概两分钟），Github处理上传的文件并形成网站，随后可以打开网址：</p>
+<pre><code>https://github用户名.github.io/
+</code></pre>
+<p>看到自己的个人博客啦！</p>
+</font>
+</font>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2022/10/04/01DeepLearning/01_YOLO/01_D435i%E7%9B%B8%E6%9C%BA%E6%B7%B1%E5%BA%A6%E6%84%9F%E7%9F%A5/" rel="next" title="">
+       <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85node-js"><span class="nav-number">1.</span> <span class="nav-text">安装node.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85Git-for-Windows"><span class="nav-number">2.</span> <span class="nav-text">下载安装Git for Windows</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HEXO%E5%AE%89%E8%A3%85"><span class="nav-number">3.</span> <span class="nav-text">HEXO安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Vscode%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85"><span class="nav-number">4.</span> <span class="nav-text">Vscode插件安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8EHexo%E7%9A%84Next%E4%B8%BB%E9%A2%98%E9%A3%8E%E6%A0%BC%E6%A8%A1%E6%9D%BF%E4%B8%8B%E8%BD%BD%E4%BD%BF%E7%94%A8"><span class="nav-number">5.</span> <span class="nav-text">基于Hexo的Next主题风格模板下载使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Next%E7%9A%84%E6%9C%AC%E5%9C%B0%E7%BC%96%E8%AF%91%E5%92%8C%E9%A2%84%E8%A7%88"><span class="nav-number">6.</span> <span class="nav-text">Next的本地编译和预览</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Vscode%E4%B8%AD%E9%85%8D%E7%BD%AE%E4%B8%8E%E7%BC%96%E8%BE%91%E5%8D%9A%E5%AE%A2"><span class="nav-number">7.</span> <span class="nav-text">Vscode中配置与编辑博客</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Github%E4%B8%AD%E7%9A%84%E9%83%A8%E7%BD%B2"><span class="nav-number">8.</span> <span class="nav-text">Github中的部署</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Git%E7%BC%96%E8%AF%91%E4%B8%8A%E4%BC%A0%E4%BB%A5%E5%8F%8A%E6%89%93%E5%BC%80%E8%87%AA%E5%BB%BA%E7%9A%84%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99"><span class="nav-number">9.</span> <span class="nav-text">Git编译上传以及打开自建的博客网站</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

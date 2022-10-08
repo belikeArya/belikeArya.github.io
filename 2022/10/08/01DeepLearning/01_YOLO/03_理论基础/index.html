@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="YOLO v5算法说明YOLO v5 是一种高性能、通用的单阶段目标检测算法，能一次性完成定位 与目标分类两个任务，将目标检测任务转化为回归问题。YOLO v5 有四种不同 规模的模型，分别记为 YOLO v5s、YOLO v5m、YOLO v5l 和 YOLO v5x，模 型参数逐渐增加，目标检测能力逐渐提升，四种模型的检测精度与速度满足如图 所示关系。 其中，YOLO v5s 是这一系列中深度">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2022/10/08/01DeepLearning/01_YOLO/03_%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="YOLO v5算法说明YOLO v5 是一种高性能、通用的单阶段目标检测算法，能一次性完成定位 与目标分类两个任务，将目标检测任务转化为回归问题。YOLO v5 有四种不同 规模的模型，分别记为 YOLO v5s、YOLO v5m、YOLO v5l 和 YOLO v5x，模 型参数逐渐增加，目标检测能力逐渐提升，四种模型的检测精度与速度满足如图 所示关系。 其中，YOLO v5s 是这一系列中深度">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-10-08T03:39:59.290Z">
+<meta property="article:modified_time" content="2022-10-08T09:08:01.157Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2022/10/08/01DeepLearning/01_YOLO/03_%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title> | Hexo</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Hexo</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/08/01DeepLearning/01_YOLO/03_%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-10-08 11:39:59 / Modified: 17:08:01" itemprop="dateCreated datePublished" datetime="2022-10-08T11:39:59+08:00">2022-10-08</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="YOLO-v5算法说明"><a href="#YOLO-v5算法说明" class="headerlink" title="YOLO v5算法说明"></a>YOLO v5算法说明</h2><p>YOLO v5 是一种高性能、通用的单阶段目标检测算法，能一次性完成定位 与目标分类两个任务，将目标检测任务转化为回归问题。YOLO v5 有四种不同 规模的模型，分别记为 YOLO v5s、YOLO v5m、YOLO v5l 和 YOLO v5x，模 型参数逐渐增加，目标检测能力逐渐提升，四种模型的检测精度与速度满足如图 所示关系。 其中，YOLO v5s 是这一系列中深度最小、特征图宽度最小的网络，能够解 决常规目标检测所要求的精度速度问题，所以决定采用 YOLO v5s 模型作为本 次口罩检测实验的实验模型。</p>
+<div>
+<image src="/picture/01DeepLearning/01_YOLO/03/1.png">
+</div>
+
+<p>使用 YOLO v5s模型进行目标检测训练的过程可用如下流程图表示。输入一张任意尺寸的图片，经过数据增强、自适应缩放等处理后转化成 640 $\times$ 640 $\times$ 3 尺寸的图片，3表示是 3个通道的RGB 图片。再经过卷积神经网络生成3个尺寸的特征层。每个特征层映射回原始图片中划分出一定数量的网格，譬如，20 $\times$ 20的特征层将原始图片划分为400 个grid cell。YOLO v5模型可以自适应计算不同类别训练集中的最佳锚框，在原始锚框上生成预测框，预测框与真实进行对比 计算二者的差值便可建立损失函数，再反向更新迭代网络参数，得出最佳预测效果。</p>
+<div>
+<image src="/picture/01DeepLearning/01_YOLO/03/2.png">
+</div>
+
+<p>YOLO v5 网络结构分为输入端、骨干网络(Backbone)、颈部(Neck)和预测部 分(Prediction)。具有如下特点：输入端新加入 Mosaic 数据增强，可增加数据集 中小目标的数量，提高模型对小目标的检测能力；骨干网络中增加 Focus 层， 将图像的宽度和高度信息转化为通道信息，并借鉴 CSPNet 网络，设计两种不 同的 CSP 结构分别用于特征提取和特征融合以减少冗杂；Neck 中加入 FPN+PAN(Path Aggregation Network)结构；预测部分中将边界锚框的损失函数改 为广义交并比 (Completed Intersection over Union, CIoU) ；最后采用非最大极限 抑制法(Non-Maximum Suppression, NMS)对多个目标锚框进行筛选。</p>
+<div>
+<image src="/picture/01DeepLearning/01_YOLO/03/3.png">
+</div>
+
+<p>分别从上述四个部分展开介绍。</p>
+<h2 id="输入端"><a href="#输入端" class="headerlink" title="输入端"></a>输入端</h2><h3 id="Mosaic-数据增强"><a href="#Mosaic-数据增强" class="headerlink" title="Mosaic 数据增强"></a>Mosaic 数据增强</h3><p>要想获得表现良好的神经网络模型，往往需要大量的数据做支撑，然而获得 新的数据这项工作往往需要花费大量时间和人工成本，因此数据增强应运而生。 使用数据增强技术能够充分利用计算机生成数据，增加数据量，如采用缩放、平 移、旋转、剪裁、色彩变换等方法增强数据，数据增强的好处是能够增加训练样 本的数量，同时添加合适的噪声数据，提高模型的泛化能力。 Mosaic 数据增强方法的主要思想是将 4 张图片进行随机剪裁、缩放后，再 排列拼接形成一张图片，实现丰富数据集的同时，增加了小样本目标，提升网络 的训练速度。在进行归一化操作时会一次性计算 4 张图片的数据，因此模型对 内存的需求降低。</p>
+<div align=center>
+<image src="/picture/01DeepLearning/01_YOLO/03/4.png">
+</div>
+
+<h2 id="主干网络（Backbone）"><a href="#主干网络（Backbone）" class="headerlink" title="主干网络（Backbone）"></a>主干网络（Backbone）</h2><h3 id="（1）Focus结构"><a href="#（1）Focus结构" class="headerlink" title="（1）Focus结构"></a>（1）Focus结构</h3><p>Focus 是一种对特征图的切片操作，把图片的宽度 w 和高度 h 信息整合 到 c 维度中，具体说就是将距离为 2 的四个位置堆叠到一个通道上去，因此高 h 和宽 w 都缩小为原来的 $\frac{1}{2}$ ，通道数 c 会增加 4 倍，具体过程如图所示。 Focus 模块设计主要用于降低 FLOPS（每秒浮点运算次数）以及提高运算速度。</p>
+<div align=center>
+<image src="/picture/01DeepLearning/01_YOLO/03/5.png">
+</div>
+
+<h3 id="（2）改进BottleneckCSP模块"><a href="#（2）改进BottleneckCSP模块" class="headerlink" title="（2）改进BottleneckCSP模块"></a>（2）改进BottleneckCSP模块</h3><p>在 PyTorch1.7 框架下，将原本使用的 LeakyReLU()和 Hardswish()激活函 数替换成 SiLU()激活函数，并且删减了原本 BottleneckCSP 模块中使用的部分 cov 模块，改进前的 BottleneckCSP 模块和改进后的 BottleneckCSP(C3)模块对 比图如图所示。SPP 模块使用组合的 3 个多尺度最大池化层，几乎可以在没有 降低速度的情况下提升感受野，有助于解决锚框和特征层对齐问题。</p>
+<div align=center>
+<image src="/picture/01DeepLearning/01_YOLO/03/6.png">
+</div>
+
+<h2 id="颈部（Neck）"><a href="#颈部（Neck）" class="headerlink" title="颈部（Neck）"></a>颈部（Neck）</h2><h3 id="FPN-PAN结构"><a href="#FPN-PAN结构" class="headerlink" title="FPN+PAN结构"></a>FPN+PAN结构</h3><p>该模块采用特征金字塔结构(feature pyramid networks, FPN)+路径聚合网络 结构(path aggregation networks, PAN)的结构，可以增强网络对不同缩放尺度对象 特征融合的能力。FPN 主要是铜鼓融合高低层特征提升对小目标物体的检测效 果。PAN 在 FPN 的基础上增加了一个自下向上方向的上采样路径，使底层的 定位信息更好地传递到顶层中。两者结合可以从不同的主干层对不同的检测层进 行特征聚合，利用该结构可以进一步提高对密集目标的检测性能，即我们可采用 增加特征层，多进行一次 PAN 上采样的方式，划分出更细致的网格。</p>
+<h2 id="预测部分（Prediction）"><a href="#预测部分（Prediction）" class="headerlink" title="预测部分（Prediction）"></a>预测部分（Prediction）</h2><p>卷积神经网络输出的三个特征层将原始图像划分成 3 种密度不同的网络用 于检测不同尺度的目标，20 $\times$ 20 $\times$ 21 尺度的特征层对应检测大目标，40 $\times$ 40 $\times$ 21 尺 度的特征层对应检测中目标，80 $\times$ 80 $\times$ 21 尺度的特征层对应检测小目标。不同尺 度网格后期对应的锚框大小也不尽相同。特征网格中 21 包含 4 个位置坐标（长 宽和中心点横纵坐标）、位置得分(Prediction score)用于表征框内是否有目标以 及类得分(Class score)用于表征属于每个类的可能性，B 表示每个框中预测边框 数量，通常取 3，对于口罩检测使用 face 和 mask 两类，这样就算出 21。</p>
+<div align=center>
+<image src="/picture/01DeepLearning/01_YOLO/03/7.png">
+</div>
+
+<h3 id="1-K-Means聚类锚框"><a href="#1-K-Means聚类锚框" class="headerlink" title="(1)K-Means聚类锚框"></a>(1)K-Means聚类锚框</h3><p>YOLO v5 中有作者利用 COCO 数据集定义的 3 组锚框，分别对应三个特征 层作为默认锚框使用。带标记的图像输入后先针对 bounding box 计算 bpr(best possible recall)参数，当 bpr&gt;0.98 时，说明默认锚框可以在当前目标中使用，当 bpr&lt;0.98 时，需要重新生成适应于当前目标的锚框。YOLO v5 的特点之一采用 K-Means 聚类方法生成自适应锚框。</p>
+<div align=center>
+<image src="/picture/01DeepLearning/01_YOLO/03/8.png">
+</div>
+
+<p>其中，gt 代表真实的边界框，at 代表锚框。可以看出，当r $^{max}$ &#x3D; 1 时，两 个框重合，当r $^{max}$ &lt; 4 时，将真实框的标签赋给锚框。如下图所示，以真实框 在定义锚框的 1~4 倍范围内为标准，选择适应当前目标的锚框。发现锚框不止 一种情况符合条件，所以一个预测框周围会有多个锚框出现。那么为什么判断条 件是 4 呢，后面会加以说明。</p>
+<div align=center>
+<image src="/picture/01DeepLearning/01_YOLO/03/9.png">
+</div>
+
+<h3 id="2-标注预测框"><a href="#2-标注预测框" class="headerlink" title="(2)标注预测框"></a>(2)标注预测框</h3><p>YOLO v5 在标注预测框时也与之前 YOLO 版本不同，YOLO v5 以目标中 心点所在 grid cell 左上角为参照点，取其周围三个网格进行锚框生成， 因为这 三个网格内锚框与真实框的交并比可能也很大。不同于 YOLO v3 中直接舍弃的 操作，这样可以增大正例比例。三个网格的选定方法是网格左上角点的坐标在左 移 0.5 格右移 1.5 格的范围内与中心点所在网格坐标相等，如图所示。至于参 数的选定原则，后面会加以说明。</p>
+<div align=center>
+<image src="/picture/01DeepLearning/01_YOLO/03/10.png">
+</div>
+
+<p>结合锚框并以网格左上角为参照点对预测框进行预测。如图所示，虚线表示 锚框，蓝色为预测框。确定一个预测框只需要明确预测框中心点坐标以及框的长 宽四个信息，于是可以用如下公式表示从锚框到预测框的推算过程。</p>
+<div align=center>
+<image src="/picture/01DeepLearning/01_YOLO/03/11.png">
+</div>
+
+<p>这种方法是存在问题的，当中心点无限靠近左上角时，由于 sigmod 函数特点，t $_x$ 、t $_y$ 有取无穷值才能达到，这显然是不可实现的，可将公式变形成如下公式所示，可以看出，坐标范围限制在-0.5-1.5 内；同样地，原公式中没有限制 w、h，可能出现梯度爆炸的情况，将其变形如下，范围限定在 0-4 之间。这也 解释了上面的参数选定问题。</p>
+<div align=center>
+<image src="/picture/01DeepLearning/01_YOLO/03/12.png">
+</div>
+
+<h3 id="3-改进损失函数"><a href="#3-改进损失函数" class="headerlink" title="(3)改进损失函数"></a>(3)改进损失函数</h3><p>模型的损失函数由分类损失(classification loss)、定位损失(localization loss) 和目标置信度损失(confidence loss)组成。YOLO v5 中采用二元交叉熵损失函数 计算类别概率和目标置信度得分的损失。</p>
+<div align=center>
+<image src="/picture/01DeepLearning/01_YOLO/03/13.png">
+</div>
+
+<p>改进选用 $CIoU$ 计算定位损失，公式记作：其中， $LCoU &#x3D; 1 − IoU + \frac{\rho^2(b,b^{gt})}{c^2}+\alpha V$ ，其中，$\alpha$ 是平衡参数，$V$ 是宽高比惩罚项，当中心点接近时效果更 好，这样的损失函数计算方式综合考虑了真实框与预测框之间的重合率、中心点 距离、长宽比，使得预测框回归过程中更加稳定，收敛精度更高。相较于原始的 $IoU$ 计算方法而言，度量能力更强，因为 $IoU$ 在两个框不重合后就彻底失去了度量能力。</p>
+<div align=center>
+<image src="/picture/01DeepLearning/01_YOLO/03/14.png">
+</div>
+<div align=center>
+<image src="/picture/01DeepLearning/01_YOLO/03/15.png">
+</div>
+
+<p>其中，$\sigma (t_0)$ 是预测框的置信度，由预测框的概率和预测框与真实框的 $IoU$ 值相乘得到。对 $\sigma (t_0)$设定阈值，过滤掉置信度较低的预测框，然后对剩下的预 测框采取非极大值抑制算法得到最终预测框。</p>
+<h3 id="4-非极大值抑制（-NMS-）"><a href="#4-非极大值抑制（-NMS-）" class="headerlink" title="(4)非极大值抑制（ $NMS$ ）"></a>(4)非极大值抑制（ $NMS$ ）</h3><p>经过上述步骤后，可能有多个预测框出现，为了保证最终只有一个预测框输 出且精度极大，采用非极大值抑制($NMS$)方法处理,流程如下：从所有预测框中选 取置信度最高的预测边界框 $B1$ 作为基准，将所有与 $B1$ 的 $IoU$ 超过预定阈值 的其他边界框移除。这时所有边界框中 $B1$ 的置信度最高且没有和其太过相似 的边界框，非极大值置信度的边界框得到抑制；从所有预测框中选取置信度第二 高的边界框 $B2$ 作为一个基准，将所有与 $B2$ 的 $IoU$ 超过预定阈值的其他边界 框移除；重复上述操作。直至所有预测框都被当做基准，这时没有一对边界框过于相似。</p>
+<h2 id="对比实验"><a href="#对比实验" class="headerlink" title="对比实验"></a>对比实验</h2><h3 id="（1）数据选取"><a href="#（1）数据选取" class="headerlink" title="（1）数据选取"></a>（1）数据选取</h3><p>选用公开数据集 WIDER，该数据集的制作者来自香港中文大学，他们选择 WIDER 的 61 个事件类别。WIDER FACE 数据集是人脸检测的一个 $benchmark$ 数据集，其中包含 $32203$ 张图像以及 $393703$ 个标注人脸。划分 $158989$ 个标注人脸用于训练集，$39496$ 个用于验证集。每个子集都包含 $3$ 个级 别的检测难度：$easy、medium、hard$。这些人脸在尺度、姿、光照、表情和遮挡 方面都有很大的变化范围。 根据需要，我们在此基础上，将数据集划分为三类：训练集、验证集以及测 试集。其中，训练集包括 $5130$ 张图像，验证集包含 $1000$ 张图像，测试集包含 $1839$ 张图像。</p>
+<h3 id="2-图像实验结果"><a href="#2-图像实验结果" class="headerlink" title="(2)图像实验结果"></a>(2)图像实验结果</h3><p>在 NVIDA GeForce RTX $3080$ 显卡上训练 $40$ 小时 $300$ $epoch$ 后，得出测 试集结果，选取部分代表如图所示。从图中可以看出，在光线条件差、稀疏小目标检测上效果好，基本都能正确检测，但在面部有遮挡情况下出错，可能是训练 集中包含此类模型较少造成。</p>
+<div align=center>
+<image src="/picture/01DeepLearning/01_YOLO/03/16.png">
+</div>
+
+<h3 id="3-视频实验结果"><a href="#3-视频实验结果" class="headerlink" title="(3)视频实验结果"></a>(3)视频实验结果</h3><p>由于疫情原因，学校经常进行核酸检测，录制学校做核酸视频作为 密集目标检测，同时，邀请教研室同学录制近距离目标检测视频，对比效果。发 现近距离目标视频检测清晰连贯，准确率高，密集目标检测时，超过一定距离阈 值的目标就检测不到。提出改进思路是增加 PAN 过程一次上采样，增加一层网 格更密集的特征层用于更小目标的检测。</p>
+<h3 id="4-结果分析"><a href="#4-结果分析" class="headerlink" title="(4)结果分析"></a>(4)结果分析</h3><p>目标检测的性能指标可从两个方面考虑：检测精度和检测速度。检验精度可用 $precision$（查准率）、$recall$（查全率）以及 $mAP$（平均检测精度）表示，检验 速度可以用 FLOPS（浮点运算量）表示。YOLO v5 中运行测试集得到结果如下。</p>
+<table>
+   <tr>
+    <th colspan="1" align="center">precision</th>
+    <th colspan="1" align="center">recall</th>
+    <th colspan="1" align="center">mAP</th>
+    <th colspan="1" align="center">FLOPS</th>
+    <th colspan="1" align="center">parameters</th>
+   </tr>
+   <tr>
+   <th colspan="1" align="center">0.988</th>
+    <th colspan="1" align="center">0.932</th>
+    <th colspan="1" align="center">0.955</th>
+    <th colspan="1" align="center">15.8</th>
+    <th colspan="1" align="center">7015519</th>
+   </tr>
+</table>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/10/07/02python/01_%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/" rel="prev" title="">
+      <i class="fa fa-chevron-left"></i> 
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#YOLO-v5%E7%AE%97%E6%B3%95%E8%AF%B4%E6%98%8E"><span class="nav-number">1.</span> <span class="nav-text">YOLO v5算法说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E7%AB%AF"><span class="nav-number">2.</span> <span class="nav-text">输入端</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Mosaic-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA"><span class="nav-number">2.1.</span> <span class="nav-text">Mosaic 数据增强</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E5%B9%B2%E7%BD%91%E7%BB%9C%EF%BC%88Backbone%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">主干网络（Backbone）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%881%EF%BC%89Focus%E7%BB%93%E6%9E%84"><span class="nav-number">3.1.</span> <span class="nav-text">（1）Focus结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%882%EF%BC%89%E6%94%B9%E8%BF%9BBottleneckCSP%E6%A8%A1%E5%9D%97"><span class="nav-number">3.2.</span> <span class="nav-text">（2）改进BottleneckCSP模块</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%88%E9%83%A8%EF%BC%88Neck%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">颈部（Neck）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#FPN-PAN%E7%BB%93%E6%9E%84"><span class="nav-number">4.1.</span> <span class="nav-text">FPN+PAN结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%84%E6%B5%8B%E9%83%A8%E5%88%86%EF%BC%88Prediction%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">预测部分（Prediction）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-K-Means%E8%81%9A%E7%B1%BB%E9%94%9A%E6%A1%86"><span class="nav-number">5.1.</span> <span class="nav-text">(1)K-Means聚类锚框</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%A0%87%E6%B3%A8%E9%A2%84%E6%B5%8B%E6%A1%86"><span class="nav-number">5.2.</span> <span class="nav-text">(2)标注预测框</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%94%B9%E8%BF%9B%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="nav-number">5.3.</span> <span class="nav-text">(3)改进损失函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E9%9D%9E%E6%9E%81%E5%A4%A7%E5%80%BC%E6%8A%91%E5%88%B6%EF%BC%88-NMS-%EF%BC%89"><span class="nav-number">5.4.</span> <span class="nav-text">(4)非极大值抑制（ $NMS$ ）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E6%AF%94%E5%AE%9E%E9%AA%8C"><span class="nav-number">6.</span> <span class="nav-text">对比实验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%881%EF%BC%89%E6%95%B0%E6%8D%AE%E9%80%89%E5%8F%96"><span class="nav-number">6.1.</span> <span class="nav-text">（1）数据选取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%9B%BE%E5%83%8F%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C"><span class="nav-number">6.2.</span> <span class="nav-text">(2)图像实验结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E8%A7%86%E9%A2%91%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C"><span class="nav-number">6.3.</span> <span class="nav-text">(3)视频实验结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E7%BB%93%E6%9E%9C%E5%88%86%E6%9E%90"><span class="nav-number">6.4.</span> <span class="nav-text">(4)结果分析</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
