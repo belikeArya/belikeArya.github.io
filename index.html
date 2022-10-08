@@ -242,7 +242,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2022-10-08 00:00:00 / Modified: 20:08:48" itemprop="dateCreated datePublished" datetime="2022-10-08T00:00:00+08:00">2022-10-08</time>
+              <time title="Created: 2022-10-08 00:00:00 / Modified: 20:11:07" itemprop="dateCreated datePublished" datetime="2022-10-08T00:00:00+08:00">2022-10-08</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -254,7 +254,7 @@
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/03-YOLO%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">03_YOLO理论基础</span></a>
+                  <a href="/categories/01DeepLearning/03-YOLO%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">03_YOLO理论基础</span></a>
                 </span>
             </span>
 
@@ -346,7 +346,7 @@
 
 <p>其中，$\sigma (t_0)$ 是预测框的置信度，由预测框的概率和预测框与真实框的 $IoU$ 值相乘得到。对 $\sigma (t_0)$设定阈值，过滤掉置信度较低的预测框，然后对剩下的预 测框采取非极大值抑制算法得到最终预测框。</p>
 <h3 id="4-非极大值抑制（-NMS-）"><a href="#4-非极大值抑制（-NMS-）" class="headerlink" title="(4)非极大值抑制（ $NMS$ ）"></a>(4)非极大值抑制（ $NMS$ ）</h3><p>经过上述步骤后，可能有多个预测框出现，为了保证最终只有一个预测框输 出且精度极大，采用非极大值抑制($NMS$)方法处理,流程如下：从所有预测框中选 取置信度最高的预测边界框 $B1$ 作为基准，将所有与 $B1$ 的 $IoU$ 超过预定阈值 的其他边界框移除。这时所有边界框中 $B1$ 的置信度最高且没有和其太过相似 的边界框，非极大值置信度的边界框得到抑制；从所有预测框中选取置信度第二 高的边界框 $B2$ 作为一个基准，将所有与 $B2$ 的 $IoU$ 超过预定阈值的其他边界 框移除；重复上述操作。直至所有预测框都被当做基准，这时没有一对边界框过于相似。</p>
-<h2 id="对比实验"><a href="#对比实验" class="headerlink" title="对比实验"></a>对比实验</h2><h3 id="（1）数据选取"><a href="#（1）数据选取" class="headerlink" title="（1）数据选取"></a>（1）数据选取</h3><p>选用公开数据集 WIDER，该数据集的制作者来自香港中文大学，他们选择 WIDER 的 61 个事件类别。WIDER FACE 数据集是人脸检测的一个 $benchmark$ 数据集，其中包含 $32203$ 张图像以及 $393703$ 个标注人脸。划分 $158989$ 个标注人脸用于训练集，$39496$ 个用于验证集。每个子集都包含 $3$ 个级 别的检测难度：$easy、medium、hard$。这些人脸在尺度、姿、光照、表情和遮挡 方面都有很大的变化范围。 根据需要，我们在此基础上，将数据集划分为三类：训练集、验证集以及测 试集。其中，训练集包括 $5130$ 张图像，验证集包含 $1000$ 张图像，测试集包含 $1839$ 张图像。</p>
+<h2 id="对比实验"><a href="#对比实验" class="headerlink" title="对比实验"></a>对比实验</h2><h3 id="1-数据选取"><a href="#1-数据选取" class="headerlink" title="(1)数据选取"></a>(1)数据选取</h3><p>选用公开数据集 WIDER，该数据集的制作者来自香港中文大学，他们选择 WIDER 的 61 个事件类别。WIDER FACE 数据集是人脸检测的一个 $benchmark$ 数据集，其中包含 $32203$ 张图像以及 $393703$ 个标注人脸。划分 $158989$ 个标注人脸用于训练集，$39496$ 个用于验证集。每个子集都包含 $3$ 个级 别的检测难度：$easy、medium、hard$。这些人脸在尺度、姿、光照、表情和遮挡 方面都有很大的变化范围。 根据需要，我们在此基础上，将数据集划分为三类：训练集、验证集以及测 试集。其中，训练集包括 $5130$ 张图像，验证集包含 $1000$ 张图像，测试集包含 $1839$ 张图像。</p>
 <h3 id="2-图像实验结果"><a href="#2-图像实验结果" class="headerlink" title="(2)图像实验结果"></a>(2)图像实验结果</h3><p>在 NVIDA GeForce RTX $3080$ 显卡上训练 $40$ 小时 $300$ $epoch$ 后，得出测 试集结果，选取部分代表如图所示。从图中可以看出，在光线条件差、稀疏小目标检测上效果好，基本都能正确检测，但在面部有遮挡情况下出错，可能是训练 集中包含此类模型较少造成。</p>
 <div align=center>
 <image src="/picture/01DeepLearning/03/16.png">
