@@ -53,7 +53,7 @@
 <meta property="og:image" content="http://example.com/picture/blog/021-%E6%96%B0%E5%BB%BAGithub%E4%BB%93%E5%BA%93ssh_key%E9%85%8D%E7%BD%AE1.png">
 <meta property="og:image" content="http://example.com/picture/blog/022-%E6%96%B0%E5%BB%BAGithub%E4%BB%93%E5%BA%93ssh_key%E9%85%8D%E7%BD%AE2.png">
 <meta property="article:published_time" content="2022-09-25T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-10-07T04:00:30.680Z">
+<meta property="article:modified_time" content="2022-10-08T11:33:16.170Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/picture/blog/001-node%E5%AE%98%E7%BD%91%E4%B8%8B%E8%BD%BD.png">
@@ -206,7 +206,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-10-07 12:00:30" itemprop="dateModified" datetime="2022-10-07T12:00:30+08:00">2022-10-07</time>
+                <time title="Modified: 2022-10-08 19:33:16" itemprop="dateModified" datetime="2022-10-08T19:33:16+08:00">2022-10-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -370,8 +370,7 @@
     <img src="/picture/blog/018-新建Github仓库配置.png">
 </div>
 
-
-
+<p>这张图片里建的名字是错的，注意repository名字建成xxx..github.io</p>
 <p>同时在自己项目的<code>\hexo\_config.yml</code></p>
 <p>设置提交地址：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/one-command-deployment</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">&#x27;git&#x27;</span></span><br><span class="line">  <span class="attr">repository:</span> <span class="string">git@github.com:github用户名/github用户名.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">main或者master</span></span><br></pre></td></tr></table></figure>
@@ -394,7 +393,7 @@
 </div>
 
 
-<p>然后在刚才打开的Git Bash中输入命令安装Git插件，<del>（也许不用安装也可以用）</del>：</p>
+<p>然后在刚才打开的Git Bash中输入命令安装Git插件。不安装这不后面会出现错误。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git -save</span><br><span class="line">git init</span><br></pre></td></tr></table></figure>
 <p>然后绑定个人信息命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;roninzhezhe&quot;</span></span><br><span class="line">git config --global user.email <span class="string">&quot;3280764487@qq.com&quot;</span></span><br><span class="line"></span><br><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;3280764487@qq.com&quot;</span></span><br></pre></td></tr></table></figure>
@@ -413,13 +412,15 @@
 
 <h4 id="Git编译上传以及打开自建的博客网站"><a href="#Git编译上传以及打开自建的博客网站" class="headerlink" title="Git编译上传以及打开自建的博客网站"></a>Git编译上传以及打开自建的博客网站</h4><p>反回Git bash，输入命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><figcaption><span>d```代表deploy，部署的意思，意义就是部署到Github的仓库中，上传之后会有一段时间（大概两分钟），Github处理上传的文件并形成网站，随后可以打开网址：</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    https://github用户名.github.io/</span><br><span class="line"></span><br><span class="line">看到自己的个人博客啦！</span><br><span class="line"></span><br><span class="line">如果你出现了如下错误：</span><br><span class="line">&lt;div align=&quot;center&quot;&gt;</span><br><span class="line">&lt;image src=&quot;/picture/blog/23.PNG&quot;&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">可以通过如下命令解决：</span><br><span class="line"></span><br><span class="line">```bash</span><br><span class="line">nmp install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<p>但很不幸的是，我运行完之后出现了新的问题</p>
+<div align="center">
+<image src="/picture/blog/24.PNG">
+</div>
+最后发现是创建仓库名那步出错，解决办法是新建一个仓库。
 
-<p><code>hexo d</code>代表deploy，部署的意思，意义就是部署到Github的仓库中，上传之后会有一段时间（大概两分钟），Github处理上传的文件并形成网站，随后可以打开网址：</p>
-<pre><code>https://github用户名.github.io/
-</code></pre>
-<p>看到自己的个人博客啦！</p>
-</font>
-</font>
+<p>新建仓库后，如果想要删除原有仓库，方法是：进入原仓库，点击setting，下拉到最后，找到danger zone,选择delete this repository，按步骤输入仓库名，github密码即可成功删除。<br></font><br></font></p>
+
     </div>
 
     
