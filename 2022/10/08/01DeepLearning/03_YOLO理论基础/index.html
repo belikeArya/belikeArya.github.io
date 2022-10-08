@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="YOLO v5算法说明YOLO v5 是一种高性能、通用的单阶段目标检测算法，能一次性完成定位 与目标分类两个任务，将目标检测任务转化为回归问题。YOLO v5 有四种不同 规模的模型，分别记为 YOLO v5s、YOLO v5m、YOLO v5l 和 YOLO v5x，模 型参数逐渐增加，目标检测能力逐渐提升，四种模型的检测精度与速度满足如图 所示关系。 其中，YOLO v5s 是这一系列中深度">
+  <meta name="description" content="YOLO v5算法说明YOLO v5 是一种高性能、通用的单阶段目标检测算法，能一次性完成定位 与目标分类两个任务，将目标检测任务转化为回归问题。YOLO v5 有四种不同 规模的模型，分别记为 YOLO v5s、YOLO v5m、YOLO v5l 和 YOLO v5x，模 型参数逐渐增加，目标检测能力逐渐提升，四种模型的检测精度与速度满足如图 所示关系。 其中，YOLO v5s 是这一系列">
 <meta property="og:type" content="article">
 <meta property="og:title" content="03_YOLO理论基础">
 <meta property="og:url" content="http://example.com/2022/10/08/01DeepLearning/03_YOLO%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="YOLO v5算法说明YOLO v5 是一种高性能、通用的单阶段目标检测算法，能一次性完成定位 与目标分类两个任务，将目标检测任务转化为回归问题。YOLO v5 有四种不同 规模的模型，分别记为 YOLO v5s、YOLO v5m、YOLO v5l 和 YOLO v5x，模 型参数逐渐增加，目标检测能力逐渐提升，四种模型的检测精度与速度满足如图 所示关系。 其中，YOLO v5s 是这一系列中深度">
+<meta property="og:description" content="YOLO v5算法说明YOLO v5 是一种高性能、通用的单阶段目标检测算法，能一次性完成定位 与目标分类两个任务，将目标检测任务转化为回归问题。YOLO v5 有四种不同 规模的模型，分别记为 YOLO v5s、YOLO v5m、YOLO v5l 和 YOLO v5x，模 型参数逐渐增加，目标检测能力逐渐提升，四种模型的检测精度与速度满足如图 所示关系。 其中，YOLO v5s 是这一系列">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-10-07T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-10-08T12:11:07.060Z">
+<meta property="article:modified_time" content="2022-10-08T12:20:59.270Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 
@@ -174,7 +174,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2022-10-08 00:00:00 / Modified: 20:11:07" itemprop="dateCreated datePublished" datetime="2022-10-08T00:00:00+08:00">2022-10-08</time>
+              <time title="Created: 2022-10-08 00:00:00 / Modified: 20:20:59" itemprop="dateCreated datePublished" datetime="2022-10-08T00:00:00+08:00">2022-10-08</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -201,7 +201,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="YOLO-v5算法说明"><a href="#YOLO-v5算法说明" class="headerlink" title="YOLO v5算法说明"></a>YOLO v5算法说明</h2><p>YOLO v5 是一种高性能、通用的单阶段目标检测算法，能一次性完成定位 与目标分类两个任务，将目标检测任务转化为回归问题。YOLO v5 有四种不同 规模的模型，分别记为 YOLO v5s、YOLO v5m、YOLO v5l 和 YOLO v5x，模 型参数逐渐增加，目标检测能力逐渐提升，四种模型的检测精度与速度满足如图 所示关系。 其中，YOLO v5s 是这一系列中深度最小、特征图宽度最小的网络，能够解 决常规目标检测所要求的精度速度问题，所以决定采用 YOLO v5s 模型作为本 次口罩检测实验的实验模型。</p>
+        <font size=5>
+<font face="仿宋_GB2312">
+
+<h2 id="YOLO-v5算法说明"><a href="#YOLO-v5算法说明" class="headerlink" title="YOLO v5算法说明"></a>YOLO v5算法说明</h2><p>YOLO v5 是一种高性能、通用的单阶段目标检测算法，能一次性完成定位 与目标分类两个任务，将目标检测任务转化为回归问题。YOLO v5 有四种不同 规模的模型，分别记为 YOLO v5s、YOLO v5m、YOLO v5l 和 YOLO v5x，模 型参数逐渐增加，目标检测能力逐渐提升，四种模型的检测精度与速度满足如图 所示关系。 其中，YOLO v5s 是这一系列中深度最小、特征图宽度最小的网络，能够解 决常规目标检测所要求的精度速度问题，所以决定采用 YOLO v5s 模型作为本 次口罩检测实验的实验模型。</p>
 <div>
 <image src="/picture/01DeepLearning/03/1.png">
 </div>
@@ -243,7 +246,7 @@
 <image src="/picture/01DeepLearning/03/8.png">
 </div>
 
-<p>其中，gt 代表真实的边界框，at 代表锚框。可以看出，当r $^{max}$ &#x3D; 1 时，两 个框重合，当r $^{max}$ &lt; 4 时，将真实框的标签赋给锚框。如下图所示，以真实框 在定义锚框的 1~4 倍范围内为标准，选择适应当前目标的锚框。发现锚框不止 一种情况符合条件，所以一个预测框周围会有多个锚框出现。那么为什么判断条 件是 4 呢，后面会加以说明。</p>
+<p>其中，gt 代表真实的边界框，at 代表锚框。可以看出，当r$^{max}$ &#x3D; 1 时，两 个框重合，当r$^{max}$ &lt; 4 时，将真实框的标签赋给锚框。如下图所示，以真实框 在定义锚框的 1~4 倍范围内为标准，选择适应当前目标的锚框。发现锚框不止 一种情况符合条件，所以一个预测框周围会有多个锚框出现。那么为什么判断条 件是 4 呢，后面会加以说明。</p>
 <div align=center>
 <image src="/picture/01DeepLearning/03/9.png">
 </div>
@@ -258,7 +261,7 @@
 <image src="/picture/01DeepLearning/03/11.png">
 </div>
 
-<p>这种方法是存在问题的，当中心点无限靠近左上角时，由于 sigmod 函数特点，t $_x$ 、t $_y$ 有取无穷值才能达到，这显然是不可实现的，可将公式变形成如下公式所示，可以看出，坐标范围限制在-0.5-1.5 内；同样地，原公式中没有限制 w、h，可能出现梯度爆炸的情况，将其变形如下，范围限定在 0-4 之间。这也 解释了上面的参数选定问题。</p>
+<p>这种方法是存在问题的，当中心点无限靠近左上角时，由于 sigmod 函数特点，t$_x$ 、t$_y$ 有取无穷值才能达到，这显然是不可实现的，可将公式变形成如下公式所示，可以看出，坐标范围限制在-0.5-1.5 内；同样地，原公式中没有限制 w、h，可能出现梯度爆炸的情况，将其变形如下，范围限定在 0-4 之间。这也 解释了上面的参数选定问题。</p>
 <div align=center>
 <image src="/picture/01DeepLearning/03/12.png">
 </div>
@@ -268,7 +271,7 @@
 <image src="/picture/01DeepLearning/03/13.png">
 </div>
 
-<p>改进选用 $CIoU$ 计算定位损失，公式记作：其中， $LCoU &#x3D; 1 − IoU + \frac{\rho^2(b,b^{gt})}{c^2}+\alpha V$ ，其中，$\alpha$ 是平衡参数，$V$ 是宽高比惩罚项，当中心点接近时效果更 好，这样的损失函数计算方式综合考虑了真实框与预测框之间的重合率、中心点 距离、长宽比，使得预测框回归过程中更加稳定，收敛精度更高。相较于原始的 $IoU$ 计算方法而言，度量能力更强，因为 $IoU$ 在两个框不重合后就彻底失去了度量能力。</p>
+<p>改进选用 CIoU 计算定位损失，公式记作：其中， $LCoU &#x3D; 1 − IoU + \frac{\rho^2(b,b^{gt})}{c^2}+\alpha V$ ，其中，$\alpha$ 是平衡参数，V 是宽高比惩罚项，当中心点接近时效果更好，这样的损失函数计算方式综合考虑了真实框与预测框之间的重合率、中心点 距离、长宽比，使得预测框回归过程中更加稳定，收敛精度更高。相较于原始的 IoU 计算方法而言，度量能力更强，因为 IoU 在两个框不重合后就彻底失去了度量能力。</p>
 <div align=center>
 <image src="/picture/01DeepLearning/03/14.png">
 </div>
@@ -276,16 +279,16 @@
 <image src="/picture/01DeepLearning/03/15.png">
 </div>
 
-<p>其中，$\sigma (t_0)$ 是预测框的置信度，由预测框的概率和预测框与真实框的 $IoU$ 值相乘得到。对 $\sigma (t_0)$设定阈值，过滤掉置信度较低的预测框，然后对剩下的预 测框采取非极大值抑制算法得到最终预测框。</p>
-<h3 id="4-非极大值抑制（-NMS-）"><a href="#4-非极大值抑制（-NMS-）" class="headerlink" title="(4)非极大值抑制（ $NMS$ ）"></a>(4)非极大值抑制（ $NMS$ ）</h3><p>经过上述步骤后，可能有多个预测框出现，为了保证最终只有一个预测框输 出且精度极大，采用非极大值抑制($NMS$)方法处理,流程如下：从所有预测框中选 取置信度最高的预测边界框 $B1$ 作为基准，将所有与 $B1$ 的 $IoU$ 超过预定阈值 的其他边界框移除。这时所有边界框中 $B1$ 的置信度最高且没有和其太过相似 的边界框，非极大值置信度的边界框得到抑制；从所有预测框中选取置信度第二 高的边界框 $B2$ 作为一个基准，将所有与 $B2$ 的 $IoU$ 超过预定阈值的其他边界 框移除；重复上述操作。直至所有预测框都被当做基准，这时没有一对边界框过于相似。</p>
-<h2 id="对比实验"><a href="#对比实验" class="headerlink" title="对比实验"></a>对比实验</h2><h3 id="1-数据选取"><a href="#1-数据选取" class="headerlink" title="(1)数据选取"></a>(1)数据选取</h3><p>选用公开数据集 WIDER，该数据集的制作者来自香港中文大学，他们选择 WIDER 的 61 个事件类别。WIDER FACE 数据集是人脸检测的一个 $benchmark$ 数据集，其中包含 $32203$ 张图像以及 $393703$ 个标注人脸。划分 $158989$ 个标注人脸用于训练集，$39496$ 个用于验证集。每个子集都包含 $3$ 个级 别的检测难度：$easy、medium、hard$。这些人脸在尺度、姿、光照、表情和遮挡 方面都有很大的变化范围。 根据需要，我们在此基础上，将数据集划分为三类：训练集、验证集以及测 试集。其中，训练集包括 $5130$ 张图像，验证集包含 $1000$ 张图像，测试集包含 $1839$ 张图像。</p>
-<h3 id="2-图像实验结果"><a href="#2-图像实验结果" class="headerlink" title="(2)图像实验结果"></a>(2)图像实验结果</h3><p>在 NVIDA GeForce RTX $3080$ 显卡上训练 $40$ 小时 $300$ $epoch$ 后，得出测 试集结果，选取部分代表如图所示。从图中可以看出，在光线条件差、稀疏小目标检测上效果好，基本都能正确检测，但在面部有遮挡情况下出错，可能是训练 集中包含此类模型较少造成。</p>
+<p>其中，$\sigma (t_0)$ 是预测框的置信度，由预测框的概率和预测框与真实框的 IoU 值相乘得到。对 $\sigma (t_0)$设定阈值，过滤掉置信度较低的预测框，然后对剩下的预 测框采取非极大值抑制算法得到最终预测框。</p>
+<h3 id="4-非极大值抑制（-NMS-）"><a href="#4-非极大值抑制（-NMS-）" class="headerlink" title="(4)非极大值抑制（ NMS ）"></a>(4)非极大值抑制（ NMS ）</h3><p>经过上述步骤后，可能有多个预测框出现，为了保证最终只有一个预测框输 出且精度极大，采用非极大值抑制(NMS)方法处理,流程如下：从所有预测框中选 取置信度最高的预测边界框 B1 作为基准，将所有与 B1 的 IoU 超过预定阈值 的其他边界框移除。这时所有边界框中 B1 的置信度最高且没有和其太过相似 的边界框，非极大值置信度的边界框得到抑制；从所有预测框中选取置信度第二 高的边界框 B2 作为一个基准，将所有与 B2 的 IoU 超过预定阈值的其他边界 框移除；重复上述操作。直至所有预测框都被当做基准，这时没有一对边界框过于相似。</p>
+<h2 id="对比实验"><a href="#对比实验" class="headerlink" title="对比实验"></a>对比实验</h2><h3 id="1-数据选取"><a href="#1-数据选取" class="headerlink" title="(1)数据选取"></a>(1)数据选取</h3><p>选用公开数据集 WIDER，该数据集的制作者来自香港中文大学，他们选择 WIDER 的 61 个事件类别。WIDER FACE 数据集是人脸检测的一个 benchmark 数据集，其中包含 32203 张图像以及 393703 个标注人脸。划分 158989 个标注人脸用于训练集，39496 个用于验证集。每个子集都包含 3 个级 别的检测难度：easy、medium、hard。这些人脸在尺度、姿、光照、表情和遮挡 方面都有很大的变化范围。 根据需要，我们在此基础上，将数据集划分为三类：训练集、验证集以及测 试集。其中，训练集包括 5130 张图像，验证集包含 1000 张图像，测试集包含 1839 张图像。</p>
+<h3 id="2-图像实验结果"><a href="#2-图像实验结果" class="headerlink" title="(2)图像实验结果"></a>(2)图像实验结果</h3><p>在 NVIDA GeForce RTX 3080 显卡上训练40小时 300 epoch 后，得出测 试集结果，选取部分代表如图所示。从图中可以看出，在光线条件差、稀疏小目标检测上效果好，基本都能正确检测，但在面部有遮挡情况下出错，可能是训练 集中包含此类模型较少造成。</p>
 <div align=center>
 <image src="/picture/01DeepLearning/03/16.png">
 </div>
 
 <h3 id="3-视频实验结果"><a href="#3-视频实验结果" class="headerlink" title="(3)视频实验结果"></a>(3)视频实验结果</h3><p>由于疫情原因，学校经常进行核酸检测，录制学校做核酸视频作为 密集目标检测，同时，邀请教研室同学录制近距离目标检测视频，对比效果。发 现近距离目标视频检测清晰连贯，准确率高，密集目标检测时，超过一定距离阈 值的目标就检测不到。提出改进思路是增加 PAN 过程一次上采样，增加一层网 格更密集的特征层用于更小目标的检测。</p>
-<h3 id="4-结果分析"><a href="#4-结果分析" class="headerlink" title="(4)结果分析"></a>(4)结果分析</h3><p>目标检测的性能指标可从两个方面考虑：检测精度和检测速度。检验精度可用 $precision$（查准率）、$recall$（查全率）以及 $mAP$（平均检测精度）表示，检验 速度可以用 FLOPS（浮点运算量）表示。YOLO v5 中运行测试集得到结果如下。</p>
+<h3 id="4-结果分析"><a href="#4-结果分析" class="headerlink" title="(4)结果分析"></a>(4)结果分析</h3><p>目标检测的性能指标可从两个方面考虑：检测精度和检测速度。检验精度可用 precision（查准率）、recall（查全率）以及 mAP（平均检测精度）表示，检验 速度可以用 FLOPS（浮点运算量）表示。YOLO v5 中运行测试集得到结果如下。</p>
 <table>
    <tr>
     <th colspan="1" align="center">precision</th>
@@ -302,6 +305,9 @@
     <th colspan="1" align="center">7015519</th>
    </tr>
 </table>
+
+</font>
+</font>
     </div>
 
     
@@ -381,7 +387,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#YOLO-v5%E7%AE%97%E6%B3%95%E8%AF%B4%E6%98%8E"><span class="nav-number">1.</span> <span class="nav-text">YOLO v5算法说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E7%AB%AF"><span class="nav-number">2.</span> <span class="nav-text">输入端</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Mosaic-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA"><span class="nav-number">2.1.</span> <span class="nav-text">Mosaic 数据增强</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E5%B9%B2%E7%BD%91%E7%BB%9C%EF%BC%88Backbone%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">主干网络（Backbone）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%881%EF%BC%89Focus%E7%BB%93%E6%9E%84"><span class="nav-number">3.1.</span> <span class="nav-text">（1）Focus结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%882%EF%BC%89%E6%94%B9%E8%BF%9BBottleneckCSP%E6%A8%A1%E5%9D%97"><span class="nav-number">3.2.</span> <span class="nav-text">（2）改进BottleneckCSP模块</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%88%E9%83%A8%EF%BC%88Neck%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">颈部（Neck）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#FPN-PAN%E7%BB%93%E6%9E%84"><span class="nav-number">4.1.</span> <span class="nav-text">FPN+PAN结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%84%E6%B5%8B%E9%83%A8%E5%88%86%EF%BC%88Prediction%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">预测部分（Prediction）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-K-Means%E8%81%9A%E7%B1%BB%E9%94%9A%E6%A1%86"><span class="nav-number">5.1.</span> <span class="nav-text">(1)K-Means聚类锚框</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%A0%87%E6%B3%A8%E9%A2%84%E6%B5%8B%E6%A1%86"><span class="nav-number">5.2.</span> <span class="nav-text">(2)标注预测框</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%94%B9%E8%BF%9B%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="nav-number">5.3.</span> <span class="nav-text">(3)改进损失函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E9%9D%9E%E6%9E%81%E5%A4%A7%E5%80%BC%E6%8A%91%E5%88%B6%EF%BC%88-NMS-%EF%BC%89"><span class="nav-number">5.4.</span> <span class="nav-text">(4)非极大值抑制（ $NMS$ ）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E6%AF%94%E5%AE%9E%E9%AA%8C"><span class="nav-number">6.</span> <span class="nav-text">对比实验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%95%B0%E6%8D%AE%E9%80%89%E5%8F%96"><span class="nav-number">6.1.</span> <span class="nav-text">(1)数据选取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%9B%BE%E5%83%8F%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C"><span class="nav-number">6.2.</span> <span class="nav-text">(2)图像实验结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E8%A7%86%E9%A2%91%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C"><span class="nav-number">6.3.</span> <span class="nav-text">(3)视频实验结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E7%BB%93%E6%9E%9C%E5%88%86%E6%9E%90"><span class="nav-number">6.4.</span> <span class="nav-text">(4)结果分析</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#YOLO-v5%E7%AE%97%E6%B3%95%E8%AF%B4%E6%98%8E"><span class="nav-number">1.</span> <span class="nav-text">YOLO v5算法说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E7%AB%AF"><span class="nav-number">2.</span> <span class="nav-text">输入端</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Mosaic-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA"><span class="nav-number">2.1.</span> <span class="nav-text">Mosaic 数据增强</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E5%B9%B2%E7%BD%91%E7%BB%9C%EF%BC%88Backbone%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">主干网络（Backbone）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%881%EF%BC%89Focus%E7%BB%93%E6%9E%84"><span class="nav-number">3.1.</span> <span class="nav-text">（1）Focus结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%882%EF%BC%89%E6%94%B9%E8%BF%9BBottleneckCSP%E6%A8%A1%E5%9D%97"><span class="nav-number">3.2.</span> <span class="nav-text">（2）改进BottleneckCSP模块</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%88%E9%83%A8%EF%BC%88Neck%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">颈部（Neck）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#FPN-PAN%E7%BB%93%E6%9E%84"><span class="nav-number">4.1.</span> <span class="nav-text">FPN+PAN结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%84%E6%B5%8B%E9%83%A8%E5%88%86%EF%BC%88Prediction%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">预测部分（Prediction）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-K-Means%E8%81%9A%E7%B1%BB%E9%94%9A%E6%A1%86"><span class="nav-number">5.1.</span> <span class="nav-text">(1)K-Means聚类锚框</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%A0%87%E6%B3%A8%E9%A2%84%E6%B5%8B%E6%A1%86"><span class="nav-number">5.2.</span> <span class="nav-text">(2)标注预测框</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%94%B9%E8%BF%9B%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="nav-number">5.3.</span> <span class="nav-text">(3)改进损失函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E9%9D%9E%E6%9E%81%E5%A4%A7%E5%80%BC%E6%8A%91%E5%88%B6%EF%BC%88-NMS-%EF%BC%89"><span class="nav-number">5.4.</span> <span class="nav-text">(4)非极大值抑制（ NMS ）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E6%AF%94%E5%AE%9E%E9%AA%8C"><span class="nav-number">6.</span> <span class="nav-text">对比实验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%95%B0%E6%8D%AE%E9%80%89%E5%8F%96"><span class="nav-number">6.1.</span> <span class="nav-text">(1)数据选取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%9B%BE%E5%83%8F%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C"><span class="nav-number">6.2.</span> <span class="nav-text">(2)图像实验结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E8%A7%86%E9%A2%91%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C"><span class="nav-number">6.3.</span> <span class="nav-text">(3)视频实验结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E7%BB%93%E6%9E%9C%E5%88%86%E6%9E%90"><span class="nav-number">6.4.</span> <span class="nav-text">(4)结果分析</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

@@ -170,7 +170,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2022-10-08 00:00:00 / Modified: 20:07:08" itemprop="dateCreated datePublished" datetime="2022-10-08T00:00:00+08:00">2022-10-08</time>
+              <time title="Created: 2022-10-08 00:00:00 / Modified: 20:16:22" itemprop="dateCreated datePublished" datetime="2022-10-08T00:00:00+08:00">2022-10-08</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -197,8 +197,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>路径管理： ‘.’代表当前目录，’..’代表父目录</p>
+          <font size=5>
+<font face="仿宋_GB2312">
+路径管理： '.'代表当前目录，'..'代表父目录
 
+</font>
+</font>
       
     </div>
 
@@ -242,7 +246,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2022-10-08 00:00:00 / Modified: 20:11:07" itemprop="dateCreated datePublished" datetime="2022-10-08T00:00:00+08:00">2022-10-08</time>
+              <time title="Created: 2022-10-08 00:00:00 / Modified: 20:20:59" itemprop="dateCreated datePublished" datetime="2022-10-08T00:00:00+08:00">2022-10-08</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -269,7 +273,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="YOLO-v5算法说明"><a href="#YOLO-v5算法说明" class="headerlink" title="YOLO v5算法说明"></a>YOLO v5算法说明</h2><p>YOLO v5 是一种高性能、通用的单阶段目标检测算法，能一次性完成定位 与目标分类两个任务，将目标检测任务转化为回归问题。YOLO v5 有四种不同 规模的模型，分别记为 YOLO v5s、YOLO v5m、YOLO v5l 和 YOLO v5x，模 型参数逐渐增加，目标检测能力逐渐提升，四种模型的检测精度与速度满足如图 所示关系。 其中，YOLO v5s 是这一系列中深度最小、特征图宽度最小的网络，能够解 决常规目标检测所要求的精度速度问题，所以决定采用 YOLO v5s 模型作为本 次口罩检测实验的实验模型。</p>
+          <font size=5>
+<font face="仿宋_GB2312">
+
+<h2 id="YOLO-v5算法说明"><a href="#YOLO-v5算法说明" class="headerlink" title="YOLO v5算法说明"></a>YOLO v5算法说明</h2><p>YOLO v5 是一种高性能、通用的单阶段目标检测算法，能一次性完成定位 与目标分类两个任务，将目标检测任务转化为回归问题。YOLO v5 有四种不同 规模的模型，分别记为 YOLO v5s、YOLO v5m、YOLO v5l 和 YOLO v5x，模 型参数逐渐增加，目标检测能力逐渐提升，四种模型的检测精度与速度满足如图 所示关系。 其中，YOLO v5s 是这一系列中深度最小、特征图宽度最小的网络，能够解 决常规目标检测所要求的精度速度问题，所以决定采用 YOLO v5s 模型作为本 次口罩检测实验的实验模型。</p>
 <div>
 <image src="/picture/01DeepLearning/03/1.png">
 </div>
@@ -311,7 +318,7 @@
 <image src="/picture/01DeepLearning/03/8.png">
 </div>
 
-<p>其中，gt 代表真实的边界框，at 代表锚框。可以看出，当r $^{max}$ &#x3D; 1 时，两 个框重合，当r $^{max}$ &lt; 4 时，将真实框的标签赋给锚框。如下图所示，以真实框 在定义锚框的 1~4 倍范围内为标准，选择适应当前目标的锚框。发现锚框不止 一种情况符合条件，所以一个预测框周围会有多个锚框出现。那么为什么判断条 件是 4 呢，后面会加以说明。</p>
+<p>其中，gt 代表真实的边界框，at 代表锚框。可以看出，当r$^{max}$ &#x3D; 1 时，两 个框重合，当r$^{max}$ &lt; 4 时，将真实框的标签赋给锚框。如下图所示，以真实框 在定义锚框的 1~4 倍范围内为标准，选择适应当前目标的锚框。发现锚框不止 一种情况符合条件，所以一个预测框周围会有多个锚框出现。那么为什么判断条 件是 4 呢，后面会加以说明。</p>
 <div align=center>
 <image src="/picture/01DeepLearning/03/9.png">
 </div>
@@ -326,7 +333,7 @@
 <image src="/picture/01DeepLearning/03/11.png">
 </div>
 
-<p>这种方法是存在问题的，当中心点无限靠近左上角时，由于 sigmod 函数特点，t $_x$ 、t $_y$ 有取无穷值才能达到，这显然是不可实现的，可将公式变形成如下公式所示，可以看出，坐标范围限制在-0.5-1.5 内；同样地，原公式中没有限制 w、h，可能出现梯度爆炸的情况，将其变形如下，范围限定在 0-4 之间。这也 解释了上面的参数选定问题。</p>
+<p>这种方法是存在问题的，当中心点无限靠近左上角时，由于 sigmod 函数特点，t$_x$ 、t$_y$ 有取无穷值才能达到，这显然是不可实现的，可将公式变形成如下公式所示，可以看出，坐标范围限制在-0.5-1.5 内；同样地，原公式中没有限制 w、h，可能出现梯度爆炸的情况，将其变形如下，范围限定在 0-4 之间。这也 解释了上面的参数选定问题。</p>
 <div align=center>
 <image src="/picture/01DeepLearning/03/12.png">
 </div>
@@ -336,7 +343,7 @@
 <image src="/picture/01DeepLearning/03/13.png">
 </div>
 
-<p>改进选用 $CIoU$ 计算定位损失，公式记作：其中， $LCoU &#x3D; 1 − IoU + \frac{\rho^2(b,b^{gt})}{c^2}+\alpha V$ ，其中，$\alpha$ 是平衡参数，$V$ 是宽高比惩罚项，当中心点接近时效果更 好，这样的损失函数计算方式综合考虑了真实框与预测框之间的重合率、中心点 距离、长宽比，使得预测框回归过程中更加稳定，收敛精度更高。相较于原始的 $IoU$ 计算方法而言，度量能力更强，因为 $IoU$ 在两个框不重合后就彻底失去了度量能力。</p>
+<p>改进选用 CIoU 计算定位损失，公式记作：其中， $LCoU &#x3D; 1 − IoU + \frac{\rho^2(b,b^{gt})}{c^2}+\alpha V$ ，其中，$\alpha$ 是平衡参数，V 是宽高比惩罚项，当中心点接近时效果更好，这样的损失函数计算方式综合考虑了真实框与预测框之间的重合率、中心点 距离、长宽比，使得预测框回归过程中更加稳定，收敛精度更高。相较于原始的 IoU 计算方法而言，度量能力更强，因为 IoU 在两个框不重合后就彻底失去了度量能力。</p>
 <div align=center>
 <image src="/picture/01DeepLearning/03/14.png">
 </div>
@@ -344,16 +351,16 @@
 <image src="/picture/01DeepLearning/03/15.png">
 </div>
 
-<p>其中，$\sigma (t_0)$ 是预测框的置信度，由预测框的概率和预测框与真实框的 $IoU$ 值相乘得到。对 $\sigma (t_0)$设定阈值，过滤掉置信度较低的预测框，然后对剩下的预 测框采取非极大值抑制算法得到最终预测框。</p>
-<h3 id="4-非极大值抑制（-NMS-）"><a href="#4-非极大值抑制（-NMS-）" class="headerlink" title="(4)非极大值抑制（ $NMS$ ）"></a>(4)非极大值抑制（ $NMS$ ）</h3><p>经过上述步骤后，可能有多个预测框出现，为了保证最终只有一个预测框输 出且精度极大，采用非极大值抑制($NMS$)方法处理,流程如下：从所有预测框中选 取置信度最高的预测边界框 $B1$ 作为基准，将所有与 $B1$ 的 $IoU$ 超过预定阈值 的其他边界框移除。这时所有边界框中 $B1$ 的置信度最高且没有和其太过相似 的边界框，非极大值置信度的边界框得到抑制；从所有预测框中选取置信度第二 高的边界框 $B2$ 作为一个基准，将所有与 $B2$ 的 $IoU$ 超过预定阈值的其他边界 框移除；重复上述操作。直至所有预测框都被当做基准，这时没有一对边界框过于相似。</p>
-<h2 id="对比实验"><a href="#对比实验" class="headerlink" title="对比实验"></a>对比实验</h2><h3 id="1-数据选取"><a href="#1-数据选取" class="headerlink" title="(1)数据选取"></a>(1)数据选取</h3><p>选用公开数据集 WIDER，该数据集的制作者来自香港中文大学，他们选择 WIDER 的 61 个事件类别。WIDER FACE 数据集是人脸检测的一个 $benchmark$ 数据集，其中包含 $32203$ 张图像以及 $393703$ 个标注人脸。划分 $158989$ 个标注人脸用于训练集，$39496$ 个用于验证集。每个子集都包含 $3$ 个级 别的检测难度：$easy、medium、hard$。这些人脸在尺度、姿、光照、表情和遮挡 方面都有很大的变化范围。 根据需要，我们在此基础上，将数据集划分为三类：训练集、验证集以及测 试集。其中，训练集包括 $5130$ 张图像，验证集包含 $1000$ 张图像，测试集包含 $1839$ 张图像。</p>
-<h3 id="2-图像实验结果"><a href="#2-图像实验结果" class="headerlink" title="(2)图像实验结果"></a>(2)图像实验结果</h3><p>在 NVIDA GeForce RTX $3080$ 显卡上训练 $40$ 小时 $300$ $epoch$ 后，得出测 试集结果，选取部分代表如图所示。从图中可以看出，在光线条件差、稀疏小目标检测上效果好，基本都能正确检测，但在面部有遮挡情况下出错，可能是训练 集中包含此类模型较少造成。</p>
+<p>其中，$\sigma (t_0)$ 是预测框的置信度，由预测框的概率和预测框与真实框的 IoU 值相乘得到。对 $\sigma (t_0)$设定阈值，过滤掉置信度较低的预测框，然后对剩下的预 测框采取非极大值抑制算法得到最终预测框。</p>
+<h3 id="4-非极大值抑制（-NMS-）"><a href="#4-非极大值抑制（-NMS-）" class="headerlink" title="(4)非极大值抑制（ NMS ）"></a>(4)非极大值抑制（ NMS ）</h3><p>经过上述步骤后，可能有多个预测框出现，为了保证最终只有一个预测框输 出且精度极大，采用非极大值抑制(NMS)方法处理,流程如下：从所有预测框中选 取置信度最高的预测边界框 B1 作为基准，将所有与 B1 的 IoU 超过预定阈值 的其他边界框移除。这时所有边界框中 B1 的置信度最高且没有和其太过相似 的边界框，非极大值置信度的边界框得到抑制；从所有预测框中选取置信度第二 高的边界框 B2 作为一个基准，将所有与 B2 的 IoU 超过预定阈值的其他边界 框移除；重复上述操作。直至所有预测框都被当做基准，这时没有一对边界框过于相似。</p>
+<h2 id="对比实验"><a href="#对比实验" class="headerlink" title="对比实验"></a>对比实验</h2><h3 id="1-数据选取"><a href="#1-数据选取" class="headerlink" title="(1)数据选取"></a>(1)数据选取</h3><p>选用公开数据集 WIDER，该数据集的制作者来自香港中文大学，他们选择 WIDER 的 61 个事件类别。WIDER FACE 数据集是人脸检测的一个 benchmark 数据集，其中包含 32203 张图像以及 393703 个标注人脸。划分 158989 个标注人脸用于训练集，39496 个用于验证集。每个子集都包含 3 个级 别的检测难度：easy、medium、hard。这些人脸在尺度、姿、光照、表情和遮挡 方面都有很大的变化范围。 根据需要，我们在此基础上，将数据集划分为三类：训练集、验证集以及测 试集。其中，训练集包括 5130 张图像，验证集包含 1000 张图像，测试集包含 1839 张图像。</p>
+<h3 id="2-图像实验结果"><a href="#2-图像实验结果" class="headerlink" title="(2)图像实验结果"></a>(2)图像实验结果</h3><p>在 NVIDA GeForce RTX 3080 显卡上训练40小时 300 epoch 后，得出测 试集结果，选取部分代表如图所示。从图中可以看出，在光线条件差、稀疏小目标检测上效果好，基本都能正确检测，但在面部有遮挡情况下出错，可能是训练 集中包含此类模型较少造成。</p>
 <div align=center>
 <image src="/picture/01DeepLearning/03/16.png">
 </div>
 
 <h3 id="3-视频实验结果"><a href="#3-视频实验结果" class="headerlink" title="(3)视频实验结果"></a>(3)视频实验结果</h3><p>由于疫情原因，学校经常进行核酸检测，录制学校做核酸视频作为 密集目标检测，同时，邀请教研室同学录制近距离目标检测视频，对比效果。发 现近距离目标视频检测清晰连贯，准确率高，密集目标检测时，超过一定距离阈 值的目标就检测不到。提出改进思路是增加 PAN 过程一次上采样，增加一层网 格更密集的特征层用于更小目标的检测。</p>
-<h3 id="4-结果分析"><a href="#4-结果分析" class="headerlink" title="(4)结果分析"></a>(4)结果分析</h3><p>目标检测的性能指标可从两个方面考虑：检测精度和检测速度。检验精度可用 $precision$（查准率）、$recall$（查全率）以及 $mAP$（平均检测精度）表示，检验 速度可以用 FLOPS（浮点运算量）表示。YOLO v5 中运行测试集得到结果如下。</p>
+<h3 id="4-结果分析"><a href="#4-结果分析" class="headerlink" title="(4)结果分析"></a>(4)结果分析</h3><p>目标检测的性能指标可从两个方面考虑：检测精度和检测速度。检验精度可用 precision（查准率）、recall（查全率）以及 mAP（平均检测精度）表示，检验 速度可以用 FLOPS（浮点运算量）表示。YOLO v5 中运行测试集得到结果如下。</p>
 <table>
    <tr>
     <th colspan="1" align="center">precision</th>
@@ -370,6 +377,9 @@
     <th colspan="1" align="center">7015519</th>
    </tr>
 </table>
+
+</font>
+</font>
       
     </div>
 
@@ -419,7 +429,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-10-08 20:06:53" itemprop="dateModified" datetime="2022-10-08T20:06:53+08:00">2022-10-08</time>
+                <time title="Modified: 2022-10-08 20:16:50" itemprop="dateModified" datetime="2022-10-08T20:16:50+08:00">2022-10-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -446,13 +456,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="【RealSense-D435i相机】探索相关-代码解读"><a href="#【RealSense-D435i相机】探索相关-代码解读" class="headerlink" title="【RealSense D435i相机】探索相关+代码解读"></a>【RealSense D435i相机】探索相关+代码解读</h2><p>D435i是一个搭载IMU（惯性测量单元，采用的博世BMI055）的深度相机，D435i的2000万像素RGB摄像头和3D传感器可以30帧&#x2F;秒的速度提供分辨率高达1280 × 720，或者以90帧&#x2F;秒的速度提供848 × 480的较低分辨率。该摄像头为全局快门，可以处理快速移动物体，室内室外皆可操作。深度距离在0.1 m~10 m之间。</p>
+          <font size=5>
+<font face="仿宋_GB2312">
+
+<h2 id="【RealSense-D435i相机】探索相关-代码解读"><a href="#【RealSense-D435i相机】探索相关-代码解读" class="headerlink" title="【RealSense D435i相机】探索相关+代码解读"></a>【RealSense D435i相机】探索相关+代码解读</h2><p>D435i是一个搭载IMU（惯性测量单元，采用的博世BMI055）的深度相机，D435i的2000万像素RGB摄像头和3D传感器可以30帧&#x2F;秒的速度提供分辨率高达1280 × 720，或者以90帧&#x2F;秒的速度提供848 × 480的较低分辨率。该摄像头为全局快门，可以处理快速移动物体，室内室外皆可操作。深度距离在0.1 m~10 m之间。</p>
 <h3 id="下载realsense-SDK"><a href="#下载realsense-SDK" class="headerlink" title="下载realsense SDK"></a>下载realsense SDK</h3><p><a target="_blank" rel="noopener" href="https://github.com/IntelRealSense/librealsense/releases">下载地址</a>，找到里面的SDK.exe下载，按<a target="_blank" rel="noopener" href="https://www.intelrealsense.com/zh-hans/videos-and-tutorials/">安装教程</a>步骤安装即可，过程大概需要几分钟。</p>
 <div>
 <image src="/picture/01DeepLearning/02/01.PNG">
 </div>
 
-<h3 id=""><a href="#" class="headerlink" title=""></a></h3>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3></font>
+</font>
       
     </div>
 
@@ -502,7 +516,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-10-08 20:06:57" itemprop="dateModified" datetime="2022-10-08T20:06:57+08:00">2022-10-08</time>
+                <time title="Modified: 2022-10-08 20:16:48" itemprop="dateModified" datetime="2022-10-08T20:16:48+08:00">2022-10-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -529,7 +543,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="【RealSense-D435i相机】win10-YOLOv5添加深度信息"><a href="#【RealSense-D435i相机】win10-YOLOv5添加深度信息" class="headerlink" title="【RealSense D435i相机】win10+YOLOv5添加深度信息"></a>【RealSense D435i相机】win10+YOLOv5添加深度信息</h2><p><strong>软件平台</strong>：Pycharm、Anaconda3、CUDA&amp;cuDNN、pytorch<br><strong>实现</strong>：使用Intel RealSense D435i深度相机进行深度信息采集</p>
+          <font size=5>
+<font face="仿宋_GB2312">
+
+<h2 id="【RealSense-D435i相机】win10-YOLOv5添加深度信息"><a href="#【RealSense-D435i相机】win10-YOLOv5添加深度信息" class="headerlink" title="【RealSense D435i相机】win10+YOLOv5添加深度信息"></a>【RealSense D435i相机】win10+YOLOv5添加深度信息</h2><p><strong>软件平台</strong>：Pycharm、Anaconda3、CUDA&amp;cuDNN、pytorch<br><strong>实现</strong>：使用Intel RealSense D435i深度相机进行深度信息采集</p>
 <p>D435i是一个搭载IMU（惯性测量单元，采用的博世BMI055）的深度相机，D435i的2000万像素RGB摄像头和3D传感器可以30帧&#x2F;秒的速度提供分辨率高达1280 × 720，或者以90帧&#x2F;秒的速度提供848 × 480的较低分辨率。该摄像头为全局快门，可以处理快速移动物体，室内室外皆可操作。深度距离在0.1 m~10 m之间。</p>
 <h3 id="源码下载"><a href="#源码下载" class="headerlink" title="源码下载"></a>源码下载</h3><p>源码：<a target="_blank" rel="noopener" href="https://github.com/killnice/yolov5-D435i">RealSense D435i相机添加深度后代码yolov5-D435i-main</a><br>这个代码是别人在YOLO中加好D435i相机深度信息的，具体内容还没看明白。</p>
 <h3 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h3><p>1、我们需要配置好深度学习的运行环境，大家如果之前没有配置好，可以看看我之前发的博客。<br>链接放这里：</p>
@@ -545,6 +562,9 @@
 <div>
 <image src="/picture/01DeepLearning/01/02.PNG"/>
 </div>
+
+</font>
+</font>
       
     </div>
 
